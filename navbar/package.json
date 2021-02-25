@@ -1,7 +1,7 @@
 {
   "name": "@rxjs-temp/navbar",
   "scripts": {
-    "start": "webpack serve",
+    "start": "webpack serve --port 8001",
     "start:standalone": "webpack serve --env standalone",
     "build": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
