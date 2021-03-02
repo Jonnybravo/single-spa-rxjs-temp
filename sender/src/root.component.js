@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import temperaturesStore from "@rxjs-temp/messenger";
 
-import { Input } from "@rxjs-temp/shared-UI-library";
+import { Input, Title, Button } from "@rxjs-temp/shared-UI-library";
+import { ButtonStyle } from "../../shared-UI-library/src/Button/ButtonStyle";
 
 export default function Root(props) {
   const [temp, setTemp] = useState("");
@@ -17,7 +18,7 @@ export default function Root(props) {
   };
   return (
     <div fluid style={{ padding: "30px", width: "100%" }}>
-      <h1>Send your temperature</h1>
+      <Title level={1}>Send your temperature</Title>
       <Input
         value={temp}
         placeholder="Insert temperature"
@@ -25,6 +26,9 @@ export default function Root(props) {
         onChange={(e) => setTemp(e.target.value)}
         onClick={registerTemperature}
       />
+      <Button>Styled component button</Button>
+      <Button disabled>Styled component button disabled</Button>
+      <Button inverted>Styled component button inverted</Button>
     </div>
   );
 }
