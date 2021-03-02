@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import temperaturesStore from "@rxjs-temp/messenger";
-import { Container, Input } from "semantic-ui-react";
+
+import { Input } from "@rxjs-temp/shared-UI-library";
 
 export default function Root(props) {
   const [temp, setTemp] = useState("");
 
   const registerTemperature = () => {
-    console.log("Sending: ", temp);
+    console.log("Sending: ", temp, typeof temp);
 
-    temperaturesStore.sendTemperature({ timestamp: Date.now(), value: temp });
+    if (/^[+-]?\d+$/.test(temp)) {
+      temperaturesStore.sendTemperature({ timestamp: Date.now(), value: temp });
+    }
 
     setTemp("");
   };
@@ -17,9 +20,10 @@ export default function Root(props) {
       <h1>Send your temperature</h1>
       <Input
         value={temp}
-        onChange={(e) => setTemp(e.target.value)}
-        action={{ content: "Register", onClick: registerTemperature }}
         placeholder="Insert temperature"
+        actionName="Register"
+        onChange={(e) => setTemp(e.target.value)}
+        onClick={registerTemperature}
       />
     </div>
   );

@@ -26,6 +26,8 @@ registerApplication({
   activeWhen: () => true,
 });
 
-start({
-  urlRerouteOnly: true,
+System.import("@rxjs-temp/shared-UI-library").then(() => {
+  start({
+    urlRerouteOnly: true,
+  });
 });
