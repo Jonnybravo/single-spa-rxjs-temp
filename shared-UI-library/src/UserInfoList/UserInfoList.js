@@ -12,8 +12,8 @@ function UserInfoList(props) {
   return (
     <Container>
       <Title level={1}>User Profile</Title>
-      {Object.entries(userInfo).map(([key, value]) => (
-        <Segment vertical>
+      {Object.entries(userInfo).map(([key, value], idx) => (
+        <Segment vertical key={idx}>
           <LabelInfo label={key} value={value}></LabelInfo>
         </Segment>
       ))}
