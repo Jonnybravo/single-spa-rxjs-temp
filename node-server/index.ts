@@ -37,6 +37,14 @@ let DB = [
     show: true,
     global: false,
   },
+  {
+    name: "@rxjs-temp/profile",
+    hash: "/profile",
+    appURL: "http://localhost:8007/rxjs-temp-profile.js",
+    storeURL: "/tempRegister/store.js",
+    show: true,
+    global: false,
+  },
 ];
 app.use(cors());
 app.use(bodyParser.json());
