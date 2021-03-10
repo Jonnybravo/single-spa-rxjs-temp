@@ -16,7 +16,6 @@ const temperaturesStore = {
   },
   subscribe: (setState) => subject.subscribe(setState),
   sendTemperature: (temp) => {
-    console.log("messenger", temp);
     state = {
       ...state,
       temperatures: [...state.temperatures, temp],
@@ -26,5 +25,4 @@ const temperaturesStore = {
   },
   initialState,
 };
-
-export default temperaturesStore;
+export default temperaturesStore; 
