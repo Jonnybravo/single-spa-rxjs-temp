@@ -1,7 +1,15 @@
-import {registerApplication, unregisterApplication} from 'single-spa';
+import {registerApplication} from 'single-spa';
 
 export  async function loadApp(name, hash, appURL, global) {
-    const path = global ? () => true : (location) => location.pathname.startsWith(hash)
+  let path;
+    if(hash == '/navbar'){
+      path = (location) => location.pathname !== '/login'
+    }else if(hash == '/login'){
+      path = (location) => location.pathname === hash;
+    }else if(hash !== '/login' && hash !== '/'){
+      path = (location) => location.pathname.startsWith(hash)
+    }
+    //const path = global ? () => true : (location) => location.pathname.startsWith(hash)
     registerApplication({
         name,
         app: () => System.import(appURL),

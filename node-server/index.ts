@@ -7,8 +7,16 @@ const app: Application = express();
 let DB = [
   {
     name: "@rxjs-temp/navbar",
-    hash: "/",
+    hash: "/navbar",
     appURL: "@rxjs-temp/navbar",
+    storeURL: "/tempRegister/store.js",
+    show: true,
+    global: true,
+  },
+  {
+    name: "@rxjs-temp/login",
+    hash: "/login",
+    appURL: "http://localhost:8007/rxjs-temp-auth.js",
     storeURL: "/tempRegister/store.js",
     show: true,
     global: true,

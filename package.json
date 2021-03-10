@@ -55,7 +55,7 @@
     "yargs-parser": "^20.2.6"
   },
   "scripts": {
-    "dev": "concurrently --kill-others \"cd messenger && npm start\" \"cd navbar && npm start\" \"cd receiver && npm start\" \"cd root && npm start\" \"cd sender && npm start\" \"cd shared-UI-library && npm start\" \"cd settings && npm start\"",
+    "dev": "concurrently --kill-others \"cd auth && npm start\" \"cd messenger && npm start\" \"cd navbar && npm start\" \"cd receiver && npm start\" \"cd root && npm start\" \"cd sender && npm start\" \"cd shared-UI-library && npm start\" \"cd settings && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

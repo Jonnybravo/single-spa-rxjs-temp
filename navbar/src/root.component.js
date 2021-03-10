@@ -8,10 +8,15 @@ export default function Root(props) {
 
   const [list, setList] = useState(AppStore.initialState)
   useEffect(() => {
+    const isLogged = !sessionStorage.getItem('user');
+    isLogged && window.history.pushState(null, null, '/login')
+    
     const subs = AppStore.subscribe(setList);
     AppStore.init()
 
     return () => subs.unsubscribe();
+
+    
   },[])
 
   return (
