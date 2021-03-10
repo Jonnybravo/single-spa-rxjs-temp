@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import temperaturesStore from "@rxjs-temp/messenger";
+import {temperaturesStore} from "@rxjs-temp/messenger";
 import { Container, Divider, Icon, Grid, Segment, Table } from "semantic-ui-react";
 import { Line } from "@reactchartjs/react-chart.js";
 
@@ -34,7 +34,7 @@ export default function Root(props) {
 
   useEffect(() => {
     const subs = temperaturesStore.subscribe(setTempState);
-    temperaturesStore.init();
+    temperaturesStore.init()
 
     return () => subs.unsubscribe();
   }, []);

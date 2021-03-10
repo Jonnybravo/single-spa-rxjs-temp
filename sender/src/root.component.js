@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import temperaturesStore from "@rxjs-temp/messenger";
+import {temperaturesStore} from "@rxjs-temp/messenger";
 
 import { Input, Title, Button } from "@rxjs-temp/shared-UI-library";
 import { ButtonStyle } from "../../shared-UI-library/src/Button/ButtonStyle";
