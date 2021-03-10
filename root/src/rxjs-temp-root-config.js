@@ -1,33 +1,36 @@
-import { registerApplication, start } from "single-spa";
 
-/*registerApplication({
-  name: "@single-spa/welcome",
-  app: () =>
-    System.import(
-      "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js"
-    ),
-  activeWhen: ["/"],
-});*/
+import {start,getAppNames} from "single-spa";
+import {loadApp} from './helper'
+import {AppStore} from "@rxjs-temp/messenger";
+import {getListContent} from './api/list'
 
-registerApplication({
-  name: "@rxjs-temp/sender",
-  app: () => System.import("@rxjs-temp/sender"),
-  activeWhen: (location) => location.pathname === "/",
-});
-registerApplication({
-  name: "@rxjs-temp/receiver",
-  app: () => System.import("@rxjs-temp/receiver"),
-  activeWhen: ["/receiver"],
-});
+async function init() {
+  const data = await getListContent()
+  await AppStore.init(data)
+  const {appList} =  AppStore.getData()
 
-registerApplication({
-  name: "@rxjs-temp/navbar",
-  app: () => System.import("@rxjs-temp/navbar"),
-  activeWhen: () => true,
-});
+  const loadingPromises = appList.filter(({ name, hash, appURL, global, show }) => show && loadApp(name, hash, appURL, global))
 
-System.import("@rxjs-temp/shared-UI-library").then(() => {
-  start({
-    urlRerouteOnly: true,
+  await Promise.all(loadingPromises);
+
+  await System.import("@rxjs-temp/shared-UI-library").then(() => {
+    start({
+      urlRerouteOnly: true,
+    });
   });
-});
+}
+export async function loadingApplication(name, hash, appURL){
+  await loadApp(name, hash, appURL, false)
+
+  // await System.import("@rxjs-temp/shared-UI-library").then(() => {
+  //   start({
+  //     urlRerouteOnly: true,
+  //   });
+  // });
+}
+export async function getCurrentApps( ){
+  const data = getAppNames()
+
+  console.log('registered apps', data)
+}
+init();
